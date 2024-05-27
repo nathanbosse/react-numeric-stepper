@@ -18,20 +18,13 @@ jobs:
         with:
           node-version: '20'  # Specify the Node.js version you need
 
-      - name: Install dependencies
-        run: npm install
+      - name: Install dependencies without running scripts
+        run: npm install --ignore-scripts
 
-      # Skipping test and lint steps
-      # - name: Run tests
-      #   run: npm test
+      - name: Run custom build script
+        run: npm run build:esbuild && npm run build:tsc
 
-      # - name: Run linter
-      #   run: npm run lint
-
-      - name: Build project
-        run: npm run build
-
-      - name: Commit dist folder
+      - name: Prepare dist folder for commit
         run: |
           git config --global user.name 'github-actions[bot]'
           git config --global user.email 'github-actions[bot]@users.noreply.github.com'
@@ -42,6 +35,7 @@ jobs:
   create_release:
     needs: build
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
