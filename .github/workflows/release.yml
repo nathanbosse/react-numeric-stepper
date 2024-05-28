@@ -33,8 +33,9 @@ jobs:
       - name: Increment tag version
         id: increment_tag
         run: |
-          if [[ "${{ env.LATEST_TAG }}" =~ ^v[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
-            IFS='.' read -r -a parts <<< "${{ env.LATEST_TAG:1 }}"
+          LATEST_TAG=${{ env.LATEST_TAG }}
+          if [[ "$LATEST_TAG" =~ ^v[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
+            IFS='.' read -r -a parts <<< "${LATEST_TAG:1}"
             parts[2]=$((parts[2]+1))
             NEW_TAG="v${parts[0]}.${parts[1]}.${parts[2]}"
           else
@@ -66,7 +67,7 @@ jobs:
             curl -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
                  -H "Content-Type: $(file --mime-type -b $file)" \
                  --data-binary @$file \
-                 "https://uploads.github.com/repos/${{ github.repository }}/releases/${{ steps.create_release.outputs.id }}/assets?name=$(basename $file)"
+                 "https://uploads.github.com/repos/${{ github.repository }}/releases/${{ steps.create_release.outputs.upload_url }}/assets?name=$(basename $file)"
           done
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
