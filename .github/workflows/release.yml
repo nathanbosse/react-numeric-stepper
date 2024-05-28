@@ -16,29 +16,13 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v2
         with:
-          node-version: '20'  # Specify the Node.js version you need
+          node-version: '14'  # Specify the Node.js version you need
 
       - name: Install dependencies without running scripts
         run: npm install --ignore-scripts
 
       - name: Run custom build script
         run: npm run build:esbuild && npm run build:tsc
-
-      - name: Prepare dist folder for commit
-        run: |
-          git config --global user.name 'github-actions[bot]'
-          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
-          git add dist
-          git commit -m 'Add built dist folder'
-          git push origin HEAD:${{ github.ref }}
-
-  create_release:
-    needs: build
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v2
 
       - name: Create GitHub Release
         id: create_release
@@ -51,10 +35,24 @@ jobs:
           body: |
             Release notes for ${{ github.ref }}
 
-      - name: Upload dist folder to release
+      - name: Upload dist files to release
+        run: |
+          for file in dist/**/*; do
+            curl -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
+                 -H "Content-Type: $(file --mime-type -b $file)" \
+                 --data-binary @$file \
+                 "https://uploads.github.com/repos/${{ github.repository }}/releases/${{ steps.create_release.outputs.id }}/assets?name=$(basename $file)"
+          done
+
+      - name: Upload README to release
         uses: actions/upload-release-asset@v1
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./dist
-          asset_name: dist.zip
-          asset_content_type: application/zip
+          asset_path: ./README.md
+          asset_name: README.md
+          asset_content_type: text/markdown
+
+      - name: Remove dist folder from commit
+        run: |
+          git reset HEAD^ --hard
+          git push -f origin HEAD:${{ github.ref }}
