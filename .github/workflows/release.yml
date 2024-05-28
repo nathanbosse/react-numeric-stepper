@@ -81,3 +81,5 @@ jobs:
           asset_path: ./README.md
           asset_name: README.md
           asset_content_type: text/markdown
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
