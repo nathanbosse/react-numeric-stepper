@@ -2,11 +2,11 @@ name: Build and Release
 
 on:
   push:
-    tags:
-      - 'v*.*.*'  # This triggers the workflow on tags that match the pattern
+    branches:
+      - master  # This triggers the workflow on pushes to the master branch
 
 jobs:
-  build:
+  build-and-release:
     runs-on: ubuntu-latest
 
     steps:
@@ -16,24 +16,47 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v2
         with:
-          node-version: '14'  # Specify the Node.js version you need
+          node-version: '20'  # Specify the Node.js version
 
-      - name: Install dependencies without running scripts
+      - name: Install dependencies
         run: npm install --ignore-scripts
 
       - name: Run custom build script
         run: npm run build:esbuild && npm run build:tsc
 
+      - name: Get latest tag
+        id: get_latest_tag
+        run: |
+          LATEST_TAG=$(git describe --tags `git rev-list --tags --max-count=1`)
+          echo "LATEST_TAG=$LATEST_TAG" >> $GITHUB_ENV
+
+      - name: Increment tag version
+        id: increment_tag
+        run: |
+          if [[ "${{ env.LATEST_TAG }}" =~ ^v[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
+            IFS='.' read -r -a parts <<< "${{ env.LATEST_TAG:1 }}"
+            parts[2]=$((parts[2]+1))
+            NEW_TAG="v${parts[0]}.${parts[1]}.${parts[2]}"
+          else
+            NEW_TAG="v1.0.0"
+          fi
+          echo "NEW_TAG=$NEW_TAG" >> $GITHUB_ENV
+
+      - name: Create new tag
+        run: |
+          git tag ${{ env.NEW_TAG }}
+          git push origin ${{ env.NEW_TAG }}
+
       - name: Create GitHub Release
         id: create_release
         uses: actions/create-release@v1
         with:
-          tag_name: ${{ github.ref }}
-          release_name: Release ${{ github.ref }}
+          tag_name: ${{ env.NEW_TAG }}
+          release_name: Release ${{ env.NEW_TAG }}
           draft: false
           prerelease: false
           body: |
-            Release notes for ${{ github.ref }}
+            Automatic release for changes to master branch.
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
@@ -43,7 +66,7 @@ jobs:
             curl -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
                  -H "Content-Type: $(file --mime-type -b $file)" \
                  --data-binary @$file \
-                 "https://uploads.github.com/repos/${{ github.repository }}/releases/${{ steps.create_release.outputs.upload_url }}/assets?name=$(basename $file)"
+                 "https://uploads.github.com/repos/${{ github.repository }}/releases/${{ steps.create_release.outputs.id }}/assets?name=$(basename $file)"
           done
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -55,8 +78,3 @@ jobs:
           asset_path: ./README.md
           asset_name: README.md
           asset_content_type: text/markdown
-
-      - name: Remove dist folder from commit
-        run: |
-          git reset HEAD^ --hard
-          git push -f origin HEAD:${{ github.ref }}
