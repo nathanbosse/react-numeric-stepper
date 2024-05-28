@@ -12,6 +12,8 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
+        with:
+          fetch-depth: 0  # Fetch all history to ensure tags are included
 
       - name: Set up Node.js
         uses: actions/setup-node@v2
@@ -27,7 +29,7 @@ jobs:
       - name: Get latest tag
         id: get_latest_tag
         run: |
-          LATEST_TAG=$(git describe --tags `git rev-list --tags --max-count=1`)
+          LATEST_TAG=$(git describe --tags `git rev-list --tags --max-count=1` 2>/dev/null || echo "v0.0.0")
           echo "LATEST_TAG=$LATEST_TAG" >> $GITHUB_ENV
 
       - name: Increment tag version
@@ -67,7 +69,7 @@ jobs:
             curl -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
                  -H "Content-Type: $(file --mime-type -b $file)" \
                  --data-binary @$file \
-                 "https://uploads.github.com/repos/${{ github.repository }}/releases/${{ steps.create_release.outputs.upload_url }}/assets?name=$(basename $file)"
+                 "https://uploads.github.com/repos/${{ github.repository }}/releases/${{ steps.create_release.outputs.id }}/assets?name=$(basename $file)"
           done
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
