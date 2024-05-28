@@ -26,6 +26,12 @@ jobs:
       - name: Run custom build script
         run: npm run build:esbuild && npm run build:tsc
 
+      - name: Prepare release folder
+        run: |
+          mkdir -p release/dist
+          cp -R dist/* release/dist/
+          cp package.json release/
+
       - name: Get latest tag
         id: get_latest_tag
         run: |
@@ -65,7 +71,7 @@ jobs:
 
       - name: Upload dist files to release
         run: |
-          for file in $(find dist -type f); do
+          for file in $(find release -type f); do
             curl -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
                  -H "Content-Type: $(file --mime-type -b $file)" \
                  --data-binary @$file \
