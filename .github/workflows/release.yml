@@ -3,7 +3,7 @@ name: Build and Release
 on:
   push:
     branches:
-      - master  # This triggers the workflow on pushes to the master branch
+      - master  # Triggers the workflow on pushes to the master branch
 
 jobs:
   build-and-release:
@@ -13,24 +13,18 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
         with:
-          fetch-depth: 0  # Fetch all history to ensure tags are included
+          fetch-depth: 0  # Ensure all history and tags are fetched
 
       - name: Set up Node.js
         uses: actions/setup-node@v2
         with:
-          node-version: '20'  # Specify the Node.js version
+          node-version: '20'  # Use Node.js version 20
 
       - name: Install dependencies
-        run: npm install --ignore-scripts
+        run: npm install
 
-      - name: Run custom build script
-        run: npm run build:esbuild && npm run build:tsc
-
-      - name: Prepare release folder
-        run: |
-          mkdir -p release/dist
-          cp -R dist/* release/dist/
-          cp package.json release/
+      - name: Build the project
+        run: npm run build
 
       - name: Get latest tag
         id: get_latest_tag
@@ -51,42 +45,11 @@ jobs:
           fi
           echo "NEW_TAG=$NEW_TAG" >> $GITHUB_ENV
 
-      - name: Create new tag
+      - name: Commit and push built files
         run: |
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git config --global user.name "github-actions[bot]"
+          git add dist package.json
+          git commit -m "Build and release ${{ env.NEW_TAG }}"
           git tag ${{ env.NEW_TAG }}
-          git push origin ${{ env.NEW_TAG }}
-
-      - name: Create GitHub Release
-        id: create_release
-        uses: actions/create-release@v1
-        with:
-          tag_name: ${{ env.NEW_TAG }}
-          release_name: Release ${{ env.NEW_TAG }}
-          draft: false
-          prerelease: false
-          body: |
-            Automatic release for changes to master branch.
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Upload dist directory to release
-        run: |
-          cd release
-          for file in $(find dist -type f); do
-            curl -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
-                 -H "Content-Type: $(file --mime-type -b $file)" \
-                 --data-binary @$file \
-                 "https://uploads.github.com/repos/${{ github.repository }}/releases/${{ steps.create_release.outputs.id }}/assets?name=dist/$(basename $file)"
-          done
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Upload package.json to release
-        uses: actions/upload-release-asset@v1
-        with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./release/package.json
-          asset_name: package.json
-          asset_content_type: application/json
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          git push origin HEAD:master --tags
