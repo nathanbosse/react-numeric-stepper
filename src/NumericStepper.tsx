@@ -48,6 +48,9 @@ export interface Props extends StyledProps, AccessibilityProps {
   onChange: (value: number) => void;
 }
 
+const DEBOUNCE_INTERVAL = 500; // milliseconds
+const INITIAL_UPDATE_COUNT = 10;
+
 export function NumericStepper({
   minimumValue = 0,
   maximumValue = Number.MAX_SAFE_INTEGER,
@@ -74,6 +77,7 @@ export function NumericStepper({
   const [dragListener, setDragListener] = React.useState<boolean>(true);
   const [dragDirection, setDragDirection] = React.useState<DragDirection>();
   const [isDragging, setIsDragging] = React.useState<boolean>(false);
+  const [updateCount, setUpdateCount] = React.useState<number>(0);
   const draggableAreaRef = React.useRef<HTMLDivElement>(null);
   const thumbLabelContainerRef = React.useRef<HTMLDivElement>(null);
   const isFirstMount = useFirstMountState();
@@ -109,6 +113,38 @@ export function NumericStepper({
     size
   );
 
+  const increment = (currentValue: number): number => {
+    return currentValue + getChangeAmount(currentValue);
+  };
+
+  const getChangeAmount = (currentValue: number): number => {
+    if (updateCount < INITIAL_UPDATE_COUNT) {
+      return 1;
+    }
+    if (currentValue <= 9) {
+      return 1;
+    }
+    if (currentValue <= 60) {
+      return incrementToNextMultipleOfFive(currentValue);
+    }
+    return 15;
+  };
+
+  function incrementToNextMultipleOfFive(currentValue: number): number {
+    const remainder = currentValue % 5;
+    if (remainder === 0) {
+      return 5;
+    } else if (remainder === 4) {
+      return 4;
+    } else {
+      return 5 - remainder;
+    }
+  }
+
+  const decrement = (currentValue: number): number => {
+    return currentValue - getChangeAmount(currentValue);
+  };
+
   React.useEffect(() => {
     if (!isFirstMount) {
       onChange?.(value);
@@ -134,13 +170,13 @@ export function NumericStepper({
 
   function decrementValue(): void {
     if (isDecrementable) {
-      onChange(value - stepValue);
+      onChange(decrement(value));
     }
   }
 
   function incrementValue(): void {
     if (isIncrementable) {
-      onChange(value + stepValue);
+      onChange(increment(value));
     }
   }
 
@@ -154,6 +190,7 @@ export function NumericStepper({
 
   function onDragStart(): void {
     setIsDragging(true);
+    setUpdateCount(0);
   }
 
   function onDragEnd(
@@ -180,6 +217,30 @@ export function NumericStepper({
       resetValue();
     }
   }
+
+  const debouncedDragHandler = React.useCallback(() => {
+    let lastInvocation = Date.now();
+    return (_: MouseEvent | TouchEvent | PointerEvent, info: PanInfo) => {
+      const now = Date.now();
+      if (now - lastInvocation > DEBOUNCE_INTERVAL) {
+        lastInvocation = now;
+        if (dragDirection === 'x' && info.offset.x >= 6 * sizeToScale(size)) {
+          incrementValue();
+        } else if (
+          dragDirection === 'x' &&
+          info.offset.x <= -6 * sizeToScale(size)
+        ) {
+          decrementValue();
+        } else if (
+          dragDirection === 'y' &&
+          info.offset.y >= 2 * sizeToScale(size)
+        ) {
+          resetValue();
+        }
+        setUpdateCount((prev) => prev + 1);
+      }
+    };
+  }, [dragDirection, incrementValue, decrementValue, resetValue]);
 
   return (
     <LazyMotion features={domMax} strict>
@@ -246,6 +307,7 @@ export function NumericStepper({
             data-testid="numeric-stepper-thumb"
             onDirectionLock={onDirectionLock}
             onDragStart={onDragStart}
+            onDrag={debouncedDragHandler()}
             onDragEnd={onDragEnd}
             onClick={
               isIncrementable && !isDragging ? incrementValue : undefined
