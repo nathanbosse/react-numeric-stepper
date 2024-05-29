@@ -1,22 +1,22 @@
-var yo=Object.defineProperty,ho=Object.defineProperties;var So=Object.getOwnPropertyDescriptors;var O=Object.getOwnPropertySymbols;var vo=Object.prototype.hasOwnProperty,zo=Object.prototype.propertyIsEnumerable;var X=(o,e,r)=>e in o?yo(o,e,{enumerable:!0,configurable:!0,writable:!0,value:r}):o[e]=r,c=(o,e)=>{for(var r in e||(e={}))vo.call(e,r)&&X(o,r,e[r]);if(O)for(var r of O(e))zo.call(e,r)&&X(o,r,e[r]);return o},m=(o,e)=>ho(o,So(e));import*as i from"react";import{LazyMotion as Lo,domMax as Eo,useMotionValue as K,m as x}from"framer-motion";import No from"textfit";import{useRef as $o}from"react";function F(){let o=$o(!0);return o.current?(o.current=!1,!0):o.current}import{useTransform as Io}from"framer-motion";import To from"@emotion/styled";import Mo from"@emotion/is-prop-valid";import{css as wo}from"@emotion/react";import{m as ko}from"framer-motion";function t(o){switch(o){case"sm":return 1;case"md":return 1.5;case"lg":return 2}}var Co={shouldForwardProp:Mo},j=To(ko.div,Co)`
+var wt=Object.defineProperty,kt=Object.defineProperties;var It=Object.getOwnPropertyDescriptors;var G=Object.getOwnPropertySymbols;var Dt=Object.prototype.hasOwnProperty,Rt=Object.prototype.propertyIsEnumerable;var _=(t,e,n)=>e in t?wt(t,e,{enumerable:!0,configurable:!0,writable:!0,value:n}):t[e]=n,l=(t,e)=>{for(var n in e||(e={}))Dt.call(e,n)&&_(t,n,e[n]);if(G)for(var n of G(e))Rt.call(e,n)&&_(t,n,e[n]);return t},p=(t,e)=>kt(t,It(e));import*as r from"react";import{LazyMotion as jt,domMax as Gt,useMotionValue as ot,m as T}from"framer-motion";import _t from"textfit";import{useRef as Pt}from"react";function U(){let t=Pt(!0);return t.current?(t.current=!1,!0):t.current}import{useTransform as Bt}from"framer-motion";import Et from"@emotion/styled";import Vt from"@emotion/is-prop-valid";import{css as Lt}from"@emotion/react";import{m as Nt}from"framer-motion";function o(t){switch(t){case"sm":return 1;case"md":return 1.5;case"lg":return 2}}var At={shouldForwardProp:Vt},J=Et(Nt.div,At)`
   align-items: center;
   justify-content: center;
   display: flex;
   border-radius: 9999px;
   box-sizing: border-box;
-  width: ${o=>185*t(o.size)}px;
-  height: ${o=>74*t(o.size)}px;
-  padding: ${o=>7*t(o.size)}px
-    ${o=>17*t(o.size)}px;
-  background-color: ${o=>o.inactiveTrackColor};
+  width: ${t=>185*o(t.size)}px;
+  height: ${t=>74*o(t.size)}px;
+  padding: ${t=>7*o(t.size)}px
+    ${t=>17*o(t.size)}px;
+  background-color: ${t=>t.inactiveTrackColor};
 
-  ${o=>o.thumbShadowAnimationOnTrackHoverEnabled&&wo`
+  ${t=>t.thumbShadowAnimationOnTrackHoverEnabled&&Lt`
       &:hover > div > button:nth-of-type(2) {
-        box-shadow: 0 ${20*t(o.size)}px
-            ${25*t(o.size)}px ${28*t(o.size)}px
+        box-shadow: 0 ${20*o(t.size)}px
+            ${25*o(t.size)}px ${28*o(t.size)}px
             rgb(0 0 0 / 0.1),
-          0 ${1.5*t(o.size)}px ${2*t(o.size)}px
-            ${-1*t(o.size)}px rgb(0 0 0 / 0.5);
+          0 ${1.5*o(t.size)}px ${2*o(t.size)}px
+            ${-1*o(t.size)}px rgb(0 0 0 / 0.5);
       }
     `}
 
@@ -31,11 +31,11 @@ var yo=Object.defineProperty,ho=Object.defineProperties;var So=Object.getOwnProp
       top: 50%;
       left: 50%;
       transform: translateX(-50%) translateY(-50%);
-      color: ${o=>o.hoverIconColor};
+      color: ${t=>t.hoverIconColor};
 
       & > svg {
-        width: ${o=>30*t(o.size)}px;
-        height: ${o=>30*t(o.size)}px;
+        width: ${t=>30*o(t.size)}px;
+        height: ${t=>30*o(t.size)}px;
       }
     }
 
@@ -43,7 +43,7 @@ var yo=Object.defineProperty,ho=Object.defineProperties;var So=Object.getOwnProp
       align-items: center;
       justify-content: center;
       display: flex;
-      border: 0 solid ${o=>o.focusRingColor};
+      border: 0 solid ${t=>t.focusRingColor};
       border-radius: 50%;
       padding: 0;
       cursor: pointer;
@@ -52,7 +52,7 @@ var yo=Object.defineProperty,ho=Object.defineProperties;var So=Object.getOwnProp
       -webkit-tap-highlight-color: transparent;
 
       &:focus {
-        border-width: ${o=>1*t(o.size)}px;
+        border-width: ${t=>1*o(t.size)}px;
       }
 
       &:focus:not(:focus-visible) {
@@ -60,73 +60,73 @@ var yo=Object.defineProperty,ho=Object.defineProperties;var So=Object.getOwnProp
       }
 
       &:focus-visible {
-        border-width: ${o=>1*t(o.size)}px;
+        border-width: ${t=>1*o(t.size)}px;
       }
     }
 
     & > button:nth-of-type(2n + 1) {
       transition: border-width 50ms,
-        color ${o=>o.isDragging?0:150}ms,
+        color ${t=>t.isDragging?0:150}ms,
         background-color 150ms;
-      width: ${o=>34*t(o.size)}px;
-      height: ${o=>34*t(o.size)}px;
-      margin: ${o=>5*t(o.size)}px;
+      width: ${t=>34*o(t.size)}px;
+      height: ${t=>34*o(t.size)}px;
+      margin: ${t=>5*o(t.size)}px;
       background-color: transparent;
-      color: ${o=>o.inactiveIconColor};
+      color: ${t=>t.inactiveIconColor};
       user-select: none;
 
       & > svg {
-        width: ${o=>30*t(o.size)}px;
-        height: ${o=>30*t(o.size)}px;
+        width: ${t=>30*o(t.size)}px;
+        height: ${t=>30*o(t.size)}px;
       }
 
       &[aria-disabled='false']:hover {
-        background-color: ${o=>o.hoverButtonColor};
-        color: ${o=>o.hoverIconColor} !important;
+        background-color: ${t=>t.hoverButtonColor};
+        color: ${t=>t.hoverIconColor} !important;
       }
 
       &[aria-disabled='false']:active {
-        background-color: ${o=>o.activeButtonColor};
-        color: ${o=>o.activeIconColor} !important;
+        background-color: ${t=>t.activeButtonColor};
+        color: ${t=>t.activeIconColor} !important;
       }
 
       &[aria-disabled='true'] {
         cursor: default;
-        color: ${o=>o.disabledIconColor} !important;
+        color: ${t=>t.disabledIconColor} !important;
       }
     }
 
     & > button:nth-of-type(2) {
       z-index: 1;
       transition: box-shadow 150ms;
-      margin: 0 ${o=>2*t(o.size)}px;
-      box-shadow: 0 ${o=>5*t(o.size)}px
-          ${o=>5*t(o.size)}px
-          ${o=>-2*t(o.size)}px rgb(0 0 0 / 0.1),
-        0 ${o=>1.5*t(o.size)}px
-          ${o=>2*t(o.size)}px
-          ${o=>-1*t(o.size)}px rgb(0 0 0 / 0.5);
-      width: ${o=>60*t(o.size)}px;
-      height: ${o=>60*t(o.size)}px;
-      background-color: ${o=>o.thumbColor};
-      color: ${o=>o.thumbLabelColor};
+      margin: 0 ${t=>2*o(t.size)}px;
+      box-shadow: 0 ${t=>5*o(t.size)}px
+          ${t=>5*o(t.size)}px
+          ${t=>-2*o(t.size)}px rgb(0 0 0 / 0.1),
+        0 ${t=>1.5*o(t.size)}px
+          ${t=>2*o(t.size)}px
+          ${t=>-1*o(t.size)}px rgb(0 0 0 / 0.5);
+      width: ${t=>60*o(t.size)}px;
+      height: ${t=>60*o(t.size)}px;
+      background-color: ${t=>t.thumbColor};
+      color: ${t=>t.thumbLabelColor};
 
       & > div {
         align-items: center;
         justify-content: center;
         display: flex;
-        width: ${o=>46*t(o.size)}px;
+        width: ${t=>46*o(t.size)}px;
       }
 
       &:active {
-        box-shadow: 0 ${o=>5*t(o.size)}px
-            ${o=>5*t(o.size)}px
-            ${o=>-2*t(o.size)}px rgb(0 0 0 / 0.1),
-          0 ${o=>1.5*t(o.size)}px
-            ${o=>2*t(o.size)}px
-            ${o=>-1*t(o.size)}px rgb(0 0 0 / 0.5);
+        box-shadow: 0 ${t=>5*o(t.size)}px
+            ${t=>5*o(t.size)}px
+            ${t=>-2*o(t.size)}px rgb(0 0 0 / 0.1),
+          0 ${t=>1.5*o(t.size)}px
+            ${t=>2*o(t.size)}px
+            ${t=>-1*o(t.size)}px rgb(0 0 0 / 0.5);
       }
     }
   }
-`;function G(o,e){return Io(o,[0,22*t(e)],[1,0])}import{useTransform as Vo}from"framer-motion";function H(o,e,r,n,s){return Vo(o,[16*t(e),0,-16*t(e)],[s,r,n])}import{useTransform as Ro}from"framer-motion";function J(o,e,r,n,s){return Ro(o,[-16*t(e),0,16*t(e)],[s,r,n])}import{useTransform as Po}from"framer-motion";function W(o,e,r,n){return Po(o,[-110*t(e),0,110*t(e)],[n,r,n])}import{useTransform as _}from"framer-motion";function Y(o,e){let r=_(o,s=>s/5.5),n=_(e,s=>s/6.5);return{x:r,y:n}}import{useTransform as Do}from"framer-motion";function q(o,e){return Do(o,[0,62*t(e)],[0,1])}import*as l from"react";var M=l.forwardRef((o,e)=>l.createElement("svg",m(c({xmlns:"http://www.w3.org/2000/svg",fill:"none",viewBox:"0 0 24 24",stroke:"currentColor"},o),{ref:e}),l.createElement("path",{strokeLinecap:"round",strokeLinejoin:"round",strokeWidth:1,d:"M20 12H4"})));M.displayName="MinusIcon";import*as p from"react";var w=p.forwardRef((o,e)=>p.createElement("svg",m(c({xmlns:"http://www.w3.org/2000/svg",fill:"none",viewBox:"0 0 24 24",stroke:"currentColor"},o),{ref:e}),p.createElement("path",{strokeLinecap:"round",strokeLinejoin:"round",strokeWidth:1,d:"M6 18L18 6M6 6l12 12"})));w.displayName="XIcon";import*as f from"react";var k=f.forwardRef((o,e)=>f.createElement("svg",m(c({xmlns:"http://www.w3.org/2000/svg",fill:"none",viewBox:"0 0 24 24",stroke:"currentColor"},o),{ref:e}),f.createElement("path",{strokeLinecap:"round",strokeLinejoin:"round",strokeWidth:1,d:"M12 4v16m8-8H4"})));k.displayName="PlusIcon";function Tt({minimumValue:o=0,maximumValue:e=Number.MAX_SAFE_INTEGER,stepValue:r=1,value:n,onChange:s,size:a="sm",inactiveTrackColor:C="#2b2b2b",activeTrackColor:I="#1f1f1f",hoverButtonColor:Q="transparent",activeButtonColor:U="#ececec",inactiveIconColor:y="#858585",hoverIconColor:h="#ffffff",activeIconColor:Z="#000000",disabledIconColor:S="#383838",thumbColor:oo="#444444",thumbLabelColor:to="#ffffff",thumbShadowAnimationOnTrackHoverEnabled:eo=!0,focusRingColor:ro="#ececec",decrementButtonAriaLabel:io,thumbAriaLabel:no,incrementButtonAriaLabel:so}){let[ao,V]=i.useState(!0),[v,co]=i.useState(),[R,P]=i.useState(!1),D=i.useRef(null),d=i.useRef(null),L=F(),u=K(0),b=K(0),E=G(b,a),mo=H(u,a,y,h,S),uo=J(u,a,y,h,S),lo=W(u,a,C,I),N=Y(u,b),po=q(b,a);i.useEffect(()=>{L||s==null||s(n)},[L,s,n]),i.useLayoutEffect(()=>{d.current&&d.current.getBoundingClientRect().width&&No(d.current,{detectMultiLine:!1,minFontSize:4*t(a),maxFontSize:25*t(a),widthOnly:!0})},[a,n]);let z=n-r>=o,g=n+r<=e;function B(){z&&s(n-r)}function $(){g&&s(n+r)}function fo(){s(o)}function bo(A){co(A)}function go(){P(!0)}function xo(A,T){V(!1),setTimeout(()=>{P(!1),V(!0)},350),v==="x"&&T.offset.x>=6*t(a)?$():v==="x"&&T.offset.x<=-6*t(a)?B():v==="y"&&T.offset.y>=2*t(a)&&fo()}return i.createElement(Lo,{features:Eo,strict:!0},i.createElement(j,{size:a,inactiveTrackColor:C,activeTrackColor:I,hoverButtonColor:Q,activeButtonColor:U,inactiveIconColor:y,hoverIconColor:h,activeIconColor:Z,disabledIconColor:S,thumbColor:oo,thumbLabelColor:to,thumbShadowAnimationOnTrackHoverEnabled:eo,focusRingColor:ro,isDragging:R,style:{x:N.x,y:N.y,backgroundColor:lo},"data-testid":"numeric-stepper"},i.createElement("div",{ref:D},i.createElement(x.button,{type:"button",style:{opacity:E,color:mo},"aria-disabled":!z,"aria-label":io,"data-testid":"numeric-stepper-decrement-button",onClick:z?B:void 0},i.createElement(M,{"aria-hidden":"true"})),i.createElement(x.div,{style:{opacity:po},"aria-hidden":"true"},i.createElement(w,null)),i.createElement(x.button,{drag:!0,dragConstraints:D,dragDirectionLock:!0,dragSnapToOrigin:!0,dragElastic:{left:.3,bottom:.5,right:.3},dragMomentum:!1,dragTransition:{bounceStiffness:250,bounceDamping:15},dragListener:ao,type:"button",style:{x:u,y:b},"aria-label":no,"aria-live":"polite","data-testid":"numeric-stepper-thumb",onDirectionLock:bo,onDragStart:go,onDragEnd:xo,onClick:g&&!R?$:void 0},i.createElement("div",{ref:d},n)),i.createElement(x.button,{type:"button",style:{opacity:E,color:uo},"aria-disabled":!g,"aria-label":so,"data-testid":"numeric-stepper-increment-button",onClick:g?$:void 0},i.createElement(k,{"aria-hidden":"true"})))))}export{Tt as NumericStepper};
+`;function W(t,e){return Bt(t,[0,22*o(e)],[1,0])}import{useTransform as Ot}from"framer-motion";function Y(t,e,n,i,a){return Ot(t,[16*o(e),0,-16*o(e)],[a,n,i])}import{useTransform as Xt}from"framer-motion";function q(t,e,n,i,a){return Xt(t,[-16*o(e),0,16*o(e)],[a,n,i])}import{useTransform as Ft}from"framer-motion";function K(t,e,n,i){return Ft(t,[-110*o(e),0,110*o(e)],[i,n,i])}import{useTransform as Q}from"framer-motion";function Z(t,e){let n=Q(t,a=>a/5.5),i=Q(e,a=>a/6.5);return{x:n,y:i}}import{useTransform as Ht}from"framer-motion";function tt(t,e){return Ht(t,[0,62*o(e)],[0,1])}import*as b from"react";var I=b.forwardRef((t,e)=>b.createElement("svg",p(l({xmlns:"http://www.w3.org/2000/svg",fill:"none",viewBox:"0 0 24 24",stroke:"currentColor"},t),{ref:e}),b.createElement("path",{strokeLinecap:"round",strokeLinejoin:"round",strokeWidth:1,d:"M20 12H4"})));I.displayName="MinusIcon";import*as g from"react";var D=g.forwardRef((t,e)=>g.createElement("svg",p(l({xmlns:"http://www.w3.org/2000/svg",fill:"none",viewBox:"0 0 24 24",stroke:"currentColor"},t),{ref:e}),g.createElement("path",{strokeLinecap:"round",strokeLinejoin:"round",strokeWidth:1,d:"M6 18L18 6M6 6l12 12"})));D.displayName="XIcon";import*as x from"react";var R=x.forwardRef((t,e)=>x.createElement("svg",p(l({xmlns:"http://www.w3.org/2000/svg",fill:"none",viewBox:"0 0 24 24",stroke:"currentColor"},t),{ref:e}),x.createElement("path",{strokeLinecap:"round",strokeLinejoin:"round",strokeWidth:1,d:"M12 4v16m8-8H4"})));R.displayName="PlusIcon";var Ut=500,Jt=10;function No({minimumValue:t=0,maximumValue:e=Number.MAX_SAFE_INTEGER,stepValue:n=1,value:i,onChange:a,size:c="sm",inactiveTrackColor:P="#2b2b2b",activeTrackColor:E="#1f1f1f",hoverButtonColor:et="transparent",activeButtonColor:rt="#ececec",inactiveIconColor:$="#858585",hoverIconColor:z="#ffffff",activeIconColor:nt="#000000",disabledIconColor:C="#383838",thumbColor:it="#444444",thumbLabelColor:st="#ffffff",thumbShadowAnimationOnTrackHoverEnabled:at=!0,focusRingColor:ct="#ececec",decrementButtonAriaLabel:ut,thumbAriaLabel:mt,incrementButtonAriaLabel:lt}){let[pt,V]=r.useState(!0),[m,ft]=r.useState(),[L,N]=r.useState(!1),[dt,A]=r.useState(0),B=r.useRef(null),y=r.useRef(null),O=U(),f=ot(0),h=ot(0),X=W(h,c),bt=Y(f,c,$,z,C),gt=q(f,c,$,z,C),xt=K(f,c,P,E),F=Z(f,h),yt=tt(h,c),ht=s=>s+H(s),H=s=>dt<Jt||s<=9?1:s<=60?vt(s):15;function vt(s){let u=s%5;return u===0?5:u===4?4:5-u}let St=s=>s-H(s);r.useEffect(()=>{O||a==null||a(i)},[O,a,i]),r.useLayoutEffect(()=>{y.current&&y.current.getBoundingClientRect().width&&_t(y.current,{detectMultiLine:!1,minFontSize:4*o(c),maxFontSize:25*o(c),widthOnly:!0})},[c,i]);let M=i-n>=t,v=i+n<=e;function S(){M&&a(St(i))}function d(){v&&a(ht(i))}function w(){a(t)}function Tt(s){ft(s)}function $t(){N(!0),A(0)}function zt(s,u){V(!1),setTimeout(()=>{N(!1),V(!0)},350),m==="x"&&u.offset.x>=6*o(c)?d():m==="x"&&u.offset.x<=-6*o(c)?S():m==="y"&&u.offset.y>=2*o(c)&&w()}let Ct=r.useCallback(()=>{let s=Date.now();return(u,k)=>{let j=Date.now();j-s>Ut&&(s=j,m==="x"&&k.offset.x>=6*o(c)?d():m==="x"&&k.offset.x<=-6*o(c)?S():m==="y"&&k.offset.y>=2*o(c)&&w(),A(Mt=>Mt+1))}},[m,d,S,w]);return r.createElement(jt,{features:Gt,strict:!0},r.createElement(J,{size:c,inactiveTrackColor:P,activeTrackColor:E,hoverButtonColor:et,activeButtonColor:rt,inactiveIconColor:$,hoverIconColor:z,activeIconColor:nt,disabledIconColor:C,thumbColor:it,thumbLabelColor:st,thumbShadowAnimationOnTrackHoverEnabled:at,focusRingColor:ct,isDragging:L,style:{x:F.x,y:F.y,backgroundColor:xt},"data-testid":"numeric-stepper"},r.createElement("div",{ref:B},r.createElement(T.button,{type:"button",style:{opacity:X,color:bt},"aria-disabled":!M,"aria-label":ut,"data-testid":"numeric-stepper-decrement-button",onClick:M?S:void 0},r.createElement(I,{"aria-hidden":"true"})),r.createElement(T.div,{style:{opacity:yt},"aria-hidden":"true"},r.createElement(D,null)),r.createElement(T.button,{drag:!0,dragConstraints:B,dragDirectionLock:!0,dragSnapToOrigin:!0,dragElastic:{left:.3,bottom:.5,right:.3},dragMomentum:!1,dragTransition:{bounceStiffness:250,bounceDamping:15},dragListener:pt,type:"button",style:{x:f,y:h},"aria-label":mt,"aria-live":"polite","data-testid":"numeric-stepper-thumb",onDirectionLock:Tt,onDragStart:$t,onDrag:Ct(),onDragEnd:zt,onClick:v&&!L?d:void 0},r.createElement("div",{ref:y},i)),r.createElement(T.button,{type:"button",style:{opacity:X,color:gt},"aria-disabled":!v,"aria-label":lt,"data-testid":"numeric-stepper-increment-button",onClick:v?d:void 0},r.createElement(R,{"aria-hidden":"true"})))))}export{No as NumericStepper};
 //# sourceMappingURL=index.js.map

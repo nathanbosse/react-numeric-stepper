@@ -1,22 +1,22 @@
-var Po=Object.create;var f=Object.defineProperty,Do=Object.defineProperties,Lo=Object.getOwnPropertyDescriptor,Eo=Object.getOwnPropertyDescriptors,No=Object.getOwnPropertyNames,j=Object.getOwnPropertySymbols,Bo=Object.getPrototypeOf,H=Object.prototype.hasOwnProperty,Ao=Object.prototype.propertyIsEnumerable;var G=(o,e,r)=>e in o?f(o,e,{enumerable:!0,configurable:!0,writable:!0,value:r}):o[e]=r,u=(o,e)=>{for(var r in e||(e={}))H.call(e,r)&&G(o,r,e[r]);if(j)for(var r of j(e))Ao.call(e,r)&&G(o,r,e[r]);return o},l=(o,e)=>Do(o,Eo(e));var Oo=(o,e)=>{for(var r in e)f(o,r,{get:e[r],enumerable:!0})},J=(o,e,r,s)=>{if(e&&typeof e=="object"||typeof e=="function")for(let n of No(e))!H.call(o,n)&&n!==r&&f(o,n,{get:()=>e[n],enumerable:!(s=Lo(e,n))||s.enumerable});return o};var m=(o,e,r)=>(r=o!=null?Po(Bo(o)):{},J(e||!o||!o.__esModule?f(r,"default",{value:o,enumerable:!0}):r,o)),Xo=o=>J(f({},"__esModule",{value:!0}),o);var Go={};Oo(Go,{NumericStepper:()=>jo});module.exports=Xo(Go);var i=m(require("react")),c=require("framer-motion"),uo=m(require("textfit"));var W=require("react");function _(){let o=(0,W.useRef)(!0);return o.current?(o.current=!1,!0):o.current}var Z=require("framer-motion");var Y=m(require("@emotion/styled")),q=m(require("@emotion/is-prop-valid")),K=require("@emotion/react"),Q=require("framer-motion");function t(o){switch(o){case"sm":return 1;case"md":return 1.5;case"lg":return 2}}var Fo={shouldForwardProp:q.default},U=(0,Y.default)(Q.m.div,Fo)`
+var Ft=Object.create;var x=Object.defineProperty,Ht=Object.defineProperties,jt=Object.getOwnPropertyDescriptor,Gt=Object.getOwnPropertyDescriptors,_t=Object.getOwnPropertyNames,J=Object.getOwnPropertySymbols,Ut=Object.getPrototypeOf,Y=Object.prototype.hasOwnProperty,Jt=Object.prototype.propertyIsEnumerable;var W=(t,e,r)=>e in t?x(t,e,{enumerable:!0,configurable:!0,writable:!0,value:r}):t[e]=r,f=(t,e)=>{for(var r in e||(e={}))Y.call(e,r)&&W(t,r,e[r]);if(J)for(var r of J(e))Jt.call(e,r)&&W(t,r,e[r]);return t},d=(t,e)=>Ht(t,Gt(e));var Wt=(t,e)=>{for(var r in e)x(t,r,{get:e[r],enumerable:!0})},q=(t,e,r,s)=>{if(e&&typeof e=="object"||typeof e=="function")for(let i of _t(e))!Y.call(t,i)&&i!==r&&x(t,i,{get:()=>e[i],enumerable:!(s=jt(e,i))||s.enumerable});return t};var p=(t,e,r)=>(r=t!=null?Ft(Ut(t)):{},q(e||!t||!t.__esModule?x(r,"default",{value:t,enumerable:!0}):r,t)),Yt=t=>q(x({},"__esModule",{value:!0}),t);var to={};Wt(to,{NumericStepper:()=>Zt});module.exports=Yt(to);var n=p(require("react")),u=require("framer-motion"),bt=p(require("textfit"));var K=require("react");function Q(){let t=(0,K.useRef)(!0);return t.current?(t.current=!1,!0):t.current}var nt=require("framer-motion");var Z=p(require("@emotion/styled")),tt=p(require("@emotion/is-prop-valid")),ot=require("@emotion/react"),et=require("framer-motion");function o(t){switch(t){case"sm":return 1;case"md":return 1.5;case"lg":return 2}}var qt={shouldForwardProp:tt.default},rt=(0,Z.default)(et.m.div,qt)`
   align-items: center;
   justify-content: center;
   display: flex;
   border-radius: 9999px;
   box-sizing: border-box;
-  width: ${o=>185*t(o.size)}px;
-  height: ${o=>74*t(o.size)}px;
-  padding: ${o=>7*t(o.size)}px
-    ${o=>17*t(o.size)}px;
-  background-color: ${o=>o.inactiveTrackColor};
+  width: ${t=>185*o(t.size)}px;
+  height: ${t=>74*o(t.size)}px;
+  padding: ${t=>7*o(t.size)}px
+    ${t=>17*o(t.size)}px;
+  background-color: ${t=>t.inactiveTrackColor};
 
-  ${o=>o.thumbShadowAnimationOnTrackHoverEnabled&&K.css`
+  ${t=>t.thumbShadowAnimationOnTrackHoverEnabled&&ot.css`
       &:hover > div > button:nth-of-type(2) {
-        box-shadow: 0 ${20*t(o.size)}px
-            ${25*t(o.size)}px ${28*t(o.size)}px
+        box-shadow: 0 ${20*o(t.size)}px
+            ${25*o(t.size)}px ${28*o(t.size)}px
             rgb(0 0 0 / 0.1),
-          0 ${1.5*t(o.size)}px ${2*t(o.size)}px
-            ${-1*t(o.size)}px rgb(0 0 0 / 0.5);
+          0 ${1.5*o(t.size)}px ${2*o(t.size)}px
+            ${-1*o(t.size)}px rgb(0 0 0 / 0.5);
       }
     `}
 
@@ -31,11 +31,11 @@ var Po=Object.create;var f=Object.defineProperty,Do=Object.defineProperties,Lo=O
       top: 50%;
       left: 50%;
       transform: translateX(-50%) translateY(-50%);
-      color: ${o=>o.hoverIconColor};
+      color: ${t=>t.hoverIconColor};
 
       & > svg {
-        width: ${o=>30*t(o.size)}px;
-        height: ${o=>30*t(o.size)}px;
+        width: ${t=>30*o(t.size)}px;
+        height: ${t=>30*o(t.size)}px;
       }
     }
 
@@ -43,7 +43,7 @@ var Po=Object.create;var f=Object.defineProperty,Do=Object.defineProperties,Lo=O
       align-items: center;
       justify-content: center;
       display: flex;
-      border: 0 solid ${o=>o.focusRingColor};
+      border: 0 solid ${t=>t.focusRingColor};
       border-radius: 50%;
       padding: 0;
       cursor: pointer;
@@ -52,7 +52,7 @@ var Po=Object.create;var f=Object.defineProperty,Do=Object.defineProperties,Lo=O
       -webkit-tap-highlight-color: transparent;
 
       &:focus {
-        border-width: ${o=>1*t(o.size)}px;
+        border-width: ${t=>1*o(t.size)}px;
       }
 
       &:focus:not(:focus-visible) {
@@ -60,73 +60,73 @@ var Po=Object.create;var f=Object.defineProperty,Do=Object.defineProperties,Lo=O
       }
 
       &:focus-visible {
-        border-width: ${o=>1*t(o.size)}px;
+        border-width: ${t=>1*o(t.size)}px;
       }
     }
 
     & > button:nth-of-type(2n + 1) {
       transition: border-width 50ms,
-        color ${o=>o.isDragging?0:150}ms,
+        color ${t=>t.isDragging?0:150}ms,
         background-color 150ms;
-      width: ${o=>34*t(o.size)}px;
-      height: ${o=>34*t(o.size)}px;
-      margin: ${o=>5*t(o.size)}px;
+      width: ${t=>34*o(t.size)}px;
+      height: ${t=>34*o(t.size)}px;
+      margin: ${t=>5*o(t.size)}px;
       background-color: transparent;
-      color: ${o=>o.inactiveIconColor};
+      color: ${t=>t.inactiveIconColor};
       user-select: none;
 
       & > svg {
-        width: ${o=>30*t(o.size)}px;
-        height: ${o=>30*t(o.size)}px;
+        width: ${t=>30*o(t.size)}px;
+        height: ${t=>30*o(t.size)}px;
       }
 
       &[aria-disabled='false']:hover {
-        background-color: ${o=>o.hoverButtonColor};
-        color: ${o=>o.hoverIconColor} !important;
+        background-color: ${t=>t.hoverButtonColor};
+        color: ${t=>t.hoverIconColor} !important;
       }
 
       &[aria-disabled='false']:active {
-        background-color: ${o=>o.activeButtonColor};
-        color: ${o=>o.activeIconColor} !important;
+        background-color: ${t=>t.activeButtonColor};
+        color: ${t=>t.activeIconColor} !important;
       }
 
       &[aria-disabled='true'] {
         cursor: default;
-        color: ${o=>o.disabledIconColor} !important;
+        color: ${t=>t.disabledIconColor} !important;
       }
     }
 
     & > button:nth-of-type(2) {
       z-index: 1;
       transition: box-shadow 150ms;
-      margin: 0 ${o=>2*t(o.size)}px;
-      box-shadow: 0 ${o=>5*t(o.size)}px
-          ${o=>5*t(o.size)}px
-          ${o=>-2*t(o.size)}px rgb(0 0 0 / 0.1),
-        0 ${o=>1.5*t(o.size)}px
-          ${o=>2*t(o.size)}px
-          ${o=>-1*t(o.size)}px rgb(0 0 0 / 0.5);
-      width: ${o=>60*t(o.size)}px;
-      height: ${o=>60*t(o.size)}px;
-      background-color: ${o=>o.thumbColor};
-      color: ${o=>o.thumbLabelColor};
+      margin: 0 ${t=>2*o(t.size)}px;
+      box-shadow: 0 ${t=>5*o(t.size)}px
+          ${t=>5*o(t.size)}px
+          ${t=>-2*o(t.size)}px rgb(0 0 0 / 0.1),
+        0 ${t=>1.5*o(t.size)}px
+          ${t=>2*o(t.size)}px
+          ${t=>-1*o(t.size)}px rgb(0 0 0 / 0.5);
+      width: ${t=>60*o(t.size)}px;
+      height: ${t=>60*o(t.size)}px;
+      background-color: ${t=>t.thumbColor};
+      color: ${t=>t.thumbLabelColor};
 
       & > div {
         align-items: center;
         justify-content: center;
         display: flex;
-        width: ${o=>46*t(o.size)}px;
+        width: ${t=>46*o(t.size)}px;
       }
 
       &:active {
-        box-shadow: 0 ${o=>5*t(o.size)}px
-            ${o=>5*t(o.size)}px
-            ${o=>-2*t(o.size)}px rgb(0 0 0 / 0.1),
-          0 ${o=>1.5*t(o.size)}px
-            ${o=>2*t(o.size)}px
-            ${o=>-1*t(o.size)}px rgb(0 0 0 / 0.5);
+        box-shadow: 0 ${t=>5*o(t.size)}px
+            ${t=>5*o(t.size)}px
+            ${t=>-2*o(t.size)}px rgb(0 0 0 / 0.1),
+          0 ${t=>1.5*o(t.size)}px
+            ${t=>2*o(t.size)}px
+            ${t=>-1*o(t.size)}px rgb(0 0 0 / 0.5);
       }
     }
   }
-`;function oo(o,e){return(0,Z.useTransform)(o,[0,22*t(e)],[1,0])}var to=require("framer-motion");function eo(o,e,r,s,n){return(0,to.useTransform)(o,[16*t(e),0,-16*t(e)],[n,r,s])}var ro=require("framer-motion");function io(o,e,r,s,n){return(0,ro.useTransform)(o,[-16*t(e),0,16*t(e)],[n,r,s])}var no=require("framer-motion");function so(o,e,r,s){return(0,no.useTransform)(o,[-110*t(e),0,110*t(e)],[s,r,s])}var k=require("framer-motion");function ao(o,e){let r=(0,k.useTransform)(o,n=>n/5.5),s=(0,k.useTransform)(e,n=>n/6.5);return{x:r,y:s}}var co=require("framer-motion");function mo(o,e){return(0,co.useTransform)(o,[0,62*t(e)],[0,1])}var d=m(require("react")),C=d.forwardRef((o,e)=>d.createElement("svg",l(u({xmlns:"http://www.w3.org/2000/svg",fill:"none",viewBox:"0 0 24 24",stroke:"currentColor"},o),{ref:e}),d.createElement("path",{strokeLinecap:"round",strokeLinejoin:"round",strokeWidth:1,d:"M20 12H4"})));C.displayName="MinusIcon";var b=m(require("react")),I=b.forwardRef((o,e)=>b.createElement("svg",l(u({xmlns:"http://www.w3.org/2000/svg",fill:"none",viewBox:"0 0 24 24",stroke:"currentColor"},o),{ref:e}),b.createElement("path",{strokeLinecap:"round",strokeLinejoin:"round",strokeWidth:1,d:"M6 18L18 6M6 6l12 12"})));I.displayName="XIcon";var g=m(require("react")),V=g.forwardRef((o,e)=>g.createElement("svg",l(u({xmlns:"http://www.w3.org/2000/svg",fill:"none",viewBox:"0 0 24 24",stroke:"currentColor"},o),{ref:e}),g.createElement("path",{strokeLinecap:"round",strokeLinejoin:"round",strokeWidth:1,d:"M12 4v16m8-8H4"})));V.displayName="PlusIcon";function jo({minimumValue:o=0,maximumValue:e=Number.MAX_SAFE_INTEGER,stepValue:r=1,value:s,onChange:n,size:a="sm",inactiveTrackColor:R="#2b2b2b",activeTrackColor:P="#1f1f1f",hoverButtonColor:lo="transparent",activeButtonColor:po="#ececec",inactiveIconColor:S="#858585",hoverIconColor:v="#ffffff",activeIconColor:fo="#000000",disabledIconColor:z="#383838",thumbColor:bo="#444444",thumbLabelColor:go="#ffffff",thumbShadowAnimationOnTrackHoverEnabled:xo=!0,focusRingColor:yo="#ececec",decrementButtonAriaLabel:ho,thumbAriaLabel:So,incrementButtonAriaLabel:vo}){let[zo,D]=i.useState(!0),[$,$o]=i.useState(),[L,E]=i.useState(!1),N=i.useRef(null),x=i.useRef(null),B=_(),p=(0,c.useMotionValue)(0),y=(0,c.useMotionValue)(0),A=oo(y,a),To=eo(p,a,S,v,z),Mo=io(p,a,S,v,z),wo=so(p,a,R,P),O=ao(p,y),ko=mo(y,a);i.useEffect(()=>{B||n==null||n(s)},[B,n,s]),i.useLayoutEffect(()=>{x.current&&x.current.getBoundingClientRect().width&&(0,uo.default)(x.current,{detectMultiLine:!1,minFontSize:4*t(a),maxFontSize:25*t(a),widthOnly:!0})},[a,s]);let T=s-r>=o,h=s+r<=e;function X(){T&&n(s-r)}function M(){h&&n(s+r)}function Co(){n(o)}function Io(F){$o(F)}function Vo(){E(!0)}function Ro(F,w){D(!1),setTimeout(()=>{E(!1),D(!0)},350),$==="x"&&w.offset.x>=6*t(a)?M():$==="x"&&w.offset.x<=-6*t(a)?X():$==="y"&&w.offset.y>=2*t(a)&&Co()}return i.createElement(c.LazyMotion,{features:c.domMax,strict:!0},i.createElement(U,{size:a,inactiveTrackColor:R,activeTrackColor:P,hoverButtonColor:lo,activeButtonColor:po,inactiveIconColor:S,hoverIconColor:v,activeIconColor:fo,disabledIconColor:z,thumbColor:bo,thumbLabelColor:go,thumbShadowAnimationOnTrackHoverEnabled:xo,focusRingColor:yo,isDragging:L,style:{x:O.x,y:O.y,backgroundColor:wo},"data-testid":"numeric-stepper"},i.createElement("div",{ref:N},i.createElement(c.m.button,{type:"button",style:{opacity:A,color:To},"aria-disabled":!T,"aria-label":ho,"data-testid":"numeric-stepper-decrement-button",onClick:T?X:void 0},i.createElement(C,{"aria-hidden":"true"})),i.createElement(c.m.div,{style:{opacity:ko},"aria-hidden":"true"},i.createElement(I,null)),i.createElement(c.m.button,{drag:!0,dragConstraints:N,dragDirectionLock:!0,dragSnapToOrigin:!0,dragElastic:{left:.3,bottom:.5,right:.3},dragMomentum:!1,dragTransition:{bounceStiffness:250,bounceDamping:15},dragListener:zo,type:"button",style:{x:p,y},"aria-label":So,"aria-live":"polite","data-testid":"numeric-stepper-thumb",onDirectionLock:Io,onDragStart:Vo,onDragEnd:Ro,onClick:h&&!L?M:void 0},i.createElement("div",{ref:x},s)),i.createElement(c.m.button,{type:"button",style:{opacity:A,color:Mo},"aria-disabled":!h,"aria-label":vo,"data-testid":"numeric-stepper-increment-button",onClick:h?M:void 0},i.createElement(V,{"aria-hidden":"true"})))))}
+`;function it(t,e){return(0,nt.useTransform)(t,[0,22*o(e)],[1,0])}var st=require("framer-motion");function at(t,e,r,s,i){return(0,st.useTransform)(t,[16*o(e),0,-16*o(e)],[i,r,s])}var ct=require("framer-motion");function ut(t,e,r,s,i){return(0,ct.useTransform)(t,[-16*o(e),0,16*o(e)],[i,r,s])}var mt=require("framer-motion");function lt(t,e,r,s){return(0,mt.useTransform)(t,[-110*o(e),0,110*o(e)],[s,r,s])}var R=require("framer-motion");function pt(t,e){let r=(0,R.useTransform)(t,i=>i/5.5),s=(0,R.useTransform)(e,i=>i/6.5);return{x:r,y:s}}var ft=require("framer-motion");function dt(t,e){return(0,ft.useTransform)(t,[0,62*o(e)],[0,1])}var y=p(require("react")),P=y.forwardRef((t,e)=>y.createElement("svg",d(f({xmlns:"http://www.w3.org/2000/svg",fill:"none",viewBox:"0 0 24 24",stroke:"currentColor"},t),{ref:e}),y.createElement("path",{strokeLinecap:"round",strokeLinejoin:"round",strokeWidth:1,d:"M20 12H4"})));P.displayName="MinusIcon";var h=p(require("react")),E=h.forwardRef((t,e)=>h.createElement("svg",d(f({xmlns:"http://www.w3.org/2000/svg",fill:"none",viewBox:"0 0 24 24",stroke:"currentColor"},t),{ref:e}),h.createElement("path",{strokeLinecap:"round",strokeLinejoin:"round",strokeWidth:1,d:"M6 18L18 6M6 6l12 12"})));E.displayName="XIcon";var v=p(require("react")),V=v.forwardRef((t,e)=>v.createElement("svg",d(f({xmlns:"http://www.w3.org/2000/svg",fill:"none",viewBox:"0 0 24 24",stroke:"currentColor"},t),{ref:e}),v.createElement("path",{strokeLinecap:"round",strokeLinejoin:"round",strokeWidth:1,d:"M12 4v16m8-8H4"})));V.displayName="PlusIcon";var Kt=500,Qt=10;function Zt({minimumValue:t=0,maximumValue:e=Number.MAX_SAFE_INTEGER,stepValue:r=1,value:s,onChange:i,size:c="sm",inactiveTrackColor:L="#2b2b2b",activeTrackColor:N="#1f1f1f",hoverButtonColor:gt="transparent",activeButtonColor:xt="#ececec",inactiveIconColor:C="#858585",hoverIconColor:M="#ffffff",activeIconColor:yt="#000000",disabledIconColor:w="#383838",thumbColor:ht="#444444",thumbLabelColor:vt="#ffffff",thumbShadowAnimationOnTrackHoverEnabled:St=!0,focusRingColor:Tt="#ececec",decrementButtonAriaLabel:$t,thumbAriaLabel:zt,incrementButtonAriaLabel:Ct}){let[Mt,A]=n.useState(!0),[l,wt]=n.useState(),[B,O]=n.useState(!1),[kt,X]=n.useState(0),F=n.useRef(null),S=n.useRef(null),H=Q(),b=(0,u.useMotionValue)(0),T=(0,u.useMotionValue)(0),j=it(T,c),It=at(b,c,C,M,w),Dt=ut(b,c,C,M,w),Rt=lt(b,c,L,N),G=pt(b,T),Pt=dt(T,c),Et=a=>a+_(a),_=a=>kt<Qt||a<=9?1:a<=60?Vt(a):15;function Vt(a){let m=a%5;return m===0?5:m===4?4:5-m}let Lt=a=>a-_(a);n.useEffect(()=>{H||i==null||i(s)},[H,i,s]),n.useLayoutEffect(()=>{S.current&&S.current.getBoundingClientRect().width&&(0,bt.default)(S.current,{detectMultiLine:!1,minFontSize:4*o(c),maxFontSize:25*o(c),widthOnly:!0})},[c,s]);let k=s-r>=t,$=s+r<=e;function z(){k&&i(Lt(s))}function g(){$&&i(Et(s))}function I(){i(t)}function Nt(a){wt(a)}function At(){O(!0),X(0)}function Bt(a,m){A(!1),setTimeout(()=>{O(!1),A(!0)},350),l==="x"&&m.offset.x>=6*o(c)?g():l==="x"&&m.offset.x<=-6*o(c)?z():l==="y"&&m.offset.y>=2*o(c)&&I()}let Ot=n.useCallback(()=>{let a=Date.now();return(m,D)=>{let U=Date.now();U-a>Kt&&(a=U,l==="x"&&D.offset.x>=6*o(c)?g():l==="x"&&D.offset.x<=-6*o(c)?z():l==="y"&&D.offset.y>=2*o(c)&&I(),X(Xt=>Xt+1))}},[l,g,z,I]);return n.createElement(u.LazyMotion,{features:u.domMax,strict:!0},n.createElement(rt,{size:c,inactiveTrackColor:L,activeTrackColor:N,hoverButtonColor:gt,activeButtonColor:xt,inactiveIconColor:C,hoverIconColor:M,activeIconColor:yt,disabledIconColor:w,thumbColor:ht,thumbLabelColor:vt,thumbShadowAnimationOnTrackHoverEnabled:St,focusRingColor:Tt,isDragging:B,style:{x:G.x,y:G.y,backgroundColor:Rt},"data-testid":"numeric-stepper"},n.createElement("div",{ref:F},n.createElement(u.m.button,{type:"button",style:{opacity:j,color:It},"aria-disabled":!k,"aria-label":$t,"data-testid":"numeric-stepper-decrement-button",onClick:k?z:void 0},n.createElement(P,{"aria-hidden":"true"})),n.createElement(u.m.div,{style:{opacity:Pt},"aria-hidden":"true"},n.createElement(E,null)),n.createElement(u.m.button,{drag:!0,dragConstraints:F,dragDirectionLock:!0,dragSnapToOrigin:!0,dragElastic:{left:.3,bottom:.5,right:.3},dragMomentum:!1,dragTransition:{bounceStiffness:250,bounceDamping:15},dragListener:Mt,type:"button",style:{x:b,y:T},"aria-label":zt,"aria-live":"polite","data-testid":"numeric-stepper-thumb",onDirectionLock:Nt,onDragStart:At,onDrag:Ot(),onDragEnd:Bt,onClick:$&&!B?g:void 0},n.createElement("div",{ref:S},s)),n.createElement(u.m.button,{type:"button",style:{opacity:j,color:Dt},"aria-disabled":!$,"aria-label":Ct,"data-testid":"numeric-stepper-increment-button",onClick:$?g:void 0},n.createElement(V,{"aria-hidden":"true"})))))}
 //# sourceMappingURL=index.js.map
