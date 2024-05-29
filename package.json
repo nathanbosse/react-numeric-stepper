@@ -33,23 +33,17 @@
     "build": "run-s build:*",
     "build:esbuild": "ts-node scripts/build.ts",
     "build:tsc": "tsc",
-    "commit": "git-cz",
     "lint": "run-s lint:*",
     "lint:eslint": "eslint . --ignore-path .gitignore",
-    "lint:prettier": "prettier --check . --ignore-path .gitignore",
+    "lint:prettier": "prettier --w . --ignore-path .gitignore",
     "lint:tsc": "tsc --emitDeclarationOnly false --noEmit",
-    "prepare": "is-ci || husky install",
     "semantic-release": "semantic-release",
     "test": "jest",
     "test:coverage": "jest --coverage",
     "test:watch": "jest --watch",
     "storybook": "start-storybook -p 6006",
+    "start": "start-storybook -p 6006",
     "build-storybook": "build-storybook"
-  },
-  "config": {
-    "commitizen": {
-      "path": "cz-conventional-changelog"
-    }
   },
   "dependencies": {
     "@emotion/is-prop-valid": "^1.1.2",
