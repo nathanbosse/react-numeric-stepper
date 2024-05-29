@@ -1,5 +1,5 @@
 {
-  "name": "@anatoliygatt/numeric-stepper",
+  "name": "@nathanbosse/react-numeric-stepper",
   "version": "1.0.9",
   "description": "A numeric stepper component for React.",
   "keywords": [
@@ -13,14 +13,14 @@
     "javascript",
     "typescript"
   ],
-  "homepage": "https://github.com/anatoliygatt/numeric-stepper#readme",
-  "bugs": "https://github.com/anatoliygatt/numeric-stepper/issues",
+  "homepage": "https://github.com/nathanbosse/react-numeric-stepper#readme",
+  "bugs": "https://github.com/nathanbosse/react-numeric-stepper/issues",
   "repository": {
     "type": "git",
-    "url": "https://github.com/anatoliygatt/numeric-stepper.git"
+    "url": "https://github.com/nathanbosse/react-numeric-stepper.git"
   },
   "license": "MIT",
-  "author": "Anatoliy Gatt",
+  "author": "Nathan Bosse",
   "sideEffects": false,
   "main": "dist/cjs/index.js",
   "module": "dist/esm/index.js",
