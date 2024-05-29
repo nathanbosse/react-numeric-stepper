@@ -1,58 +1,55 @@
-name: Auto Tag Release
+name: Build and Release
 
 on:
   push:
     branches:
-      - master
+      - master # Triggers the workflow on pushes to the master branch
 
 jobs:
-  tag:
+  build-and-release:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
+      - name: Checkout repository
         uses: actions/checkout@v2
+        with:
+          fetch-depth: 0 # Ensure all history and tags are fetched
 
-      - name: Fetch all tags
-        run: git fetch --tags
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '20' # Use Node.js version 20
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build the project
+        run: npm run build
 
       - name: Get latest tag
         id: get_latest_tag
         run: |
-          latest_tag=$(git describe --tags `git rev-list --tags --max-count=1` || echo "")
-          echo "Latest tag: $latest_tag"
-          echo "::set-output name=latest_tag::$latest_tag"
+          LATEST_TAG=$(git describe --tags `git rev-list --tags --max-count=1` 2>/dev/null || echo "v0.0.0")
+          echo "LATEST_TAG=$LATEST_TAG" >> $GITHUB_ENV
 
-      - name: Initialize tag if none exists
-        id: init_tag
+      - name: Increment tag version
+        id: increment_tag
         run: |
-          if [ -z "${{ steps.get_latest_tag.outputs.latest_tag }}" ]; then
-            initial_tag="v1.0.0"
-            git tag $initial_tag
-            git push origin $initial_tag
-            echo "::set-output name=latest_tag::$initial_tag"
+          LATEST_TAG=${{ env.LATEST_TAG }}
+          if [[ "$LATEST_TAG" =~ ^v[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
+            IFS='.' read -r -a parts <<< "${LATEST_TAG:1}"
+            parts[2]=$((parts[2]+1))
+            NEW_TAG="v${parts[0]}.${parts[1]}.${parts[2]}"
+          else
+            NEW_TAG="v1.0.0"
           fi
+          echo "NEW_TAG=$NEW_TAG" >> $GITHUB_ENV
 
-      - name: Calculate new tag
-        id: calculate_new_tag
+      - name: Commit and push built files
         run: |
-          latest_tag=${{ steps.get_latest_tag.outputs.latest_tag }}
-          if [ -z "$latest_tag" ]; then
-            latest_tag="v1.0.0"
-          fi
-          IFS='.' read -r -a parts <<< "${latest_tag//v/}"
-          major=${parts[0]}
-          minor=${parts[1]}
-          patch=${parts[2]}
-          patch=$((patch + 1))
-          new_tag="v${major}.${minor}.${patch}"
-          echo "New tag: $new_tag"
-          echo "::set-output name=new_tag::$new_tag"
-
-      - name: Create new tag
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          new_tag=${{ steps.calculate_new_tag.outputs.new_tag }}
-          git tag $new_tag
-          git push origin $new_tag
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git config --global user.name "github-actions[bot]"
+          git add dist package.json
+          git commit -m "Build and release ${{ env.NEW_TAG }}"
+          git tag ${{ env.NEW_TAG }}
+          git push origin HEAD:master --tags
