@@ -175,9 +175,21 @@ export function NumericStepper({
     }
   }
 
+  function decrementValueOnce(): void {
+    if (isDecrementable) {
+      onChange(value - 1)
+    }
+  }
+
   function incrementValue(): void {
     if (isIncrementable) {
       onChange(increment(value))
+    }
+  }
+
+  function incrementValueOnce(): void {
+    if (isIncrementable) {
+      onChange(value + 1)
     }
   }
 
@@ -276,7 +288,7 @@ export function NumericStepper({
             aria-disabled={!isDecrementable}
             aria-label={decrementButtonAriaLabel}
             data-testid="numeric-stepper-decrement-button"
-            onClick={isDecrementable ? decrementValue : undefined}
+            onClick={isDecrementable ? decrementValueOnce : undefined}
           >
             <MinusIcon aria-hidden="true" />
           </m.button>
@@ -322,7 +334,7 @@ export function NumericStepper({
             aria-disabled={!isIncrementable}
             aria-label={incrementButtonAriaLabel}
             data-testid="numeric-stepper-increment-button"
-            onClick={isIncrementable ? incrementValue : undefined}
+            onClick={isIncrementable ? incrementValueOnce : undefined}
           >
             <PlusIcon aria-hidden="true" />
           </m.button>
