@@ -43,12 +43,12 @@ npm install @anatoliygatt/numeric-stepper @emotion/react @emotion/styled framer-
 ```
 
 ```jsx
-import { useState } from 'react';
-import { NumericStepper } from '@anatoliygatt/numeric-stepper';
+import { useState } from 'react'
+import { NumericStepper } from '@anatoliygatt/numeric-stepper'
 
 function Example() {
-  const INITIAL_VALUE = 20;
-  const [value, setValue] = useState(INITIAL_VALUE);
+  const INITIAL_VALUE = 20
+  const [value, setValue] = useState(INITIAL_VALUE)
   return (
     <NumericStepper
       minimumValue={10}
@@ -67,10 +67,10 @@ function Example() {
       thumbShadowAnimationOnTrackHoverEnabled={false}
       focusRingColor="#fff7ed"
       onChange={(value) => {
-        setValue(value);
+        setValue(value)
       }}
     />
-  );
+  )
 }
 ```
 
@@ -87,8 +87,8 @@ function Example() {
 | minimumValue                                | number   | `0`                       | The minimum value.                                                                                                                                 |
 | maximumValue                                | number   | `Number.MAX_SAFE_INTEGER` | The maximum value.                                                                                                                                 |
 | stepValue                                   | number   | `1`                       | The step increment value.                                                                                                                          |
-| value                                | number   |             | The initial value.                                                                                                                                 |
-| onChange                                    | Function |                | The callback invoked when the value changes.                                                                                                       |
+| value                                       | number   |                           | The initial value.                                                                                                                                 |
+| onChange                                    | Function |                           | The callback invoked when the value changes.                                                                                                       |
 | size                                        | string   | `sm`                      | The size of the numeric stepper. There are 3 available sizes:<ul><li>`sm` — 185x74px</li><li>`md` — 277.5x111px</li><li>`lg` — 370x148px</li></ul> |
 | inactiveTrackColor                          | string   | `#2b2b2b`                 | The color of the track while the thumb is not being horizontally dragged.                                                                          |
 | activeTrackColor                            | string   | `#1f1f1f`                 | The color of the track while the thumb is being horizontally dragged and is at the maximum trackable distance from the track's center.             |
@@ -124,7 +124,7 @@ function AccessibleExample() {
       decrementButtonAriaLabel="Decrement"
       incrementButtonAriaLabel="Increment"
     />
-  );
+  )
 }
 ```
 
@@ -132,16 +132,16 @@ Also, we can use a `thumbAriaLabel` prop to provide a description for the value 
 
 ```jsx
 function EnhancedThumbAccessibilityExample() {
-  const [value, setValue] = useState(0);
+  const [value, setValue] = useState(0)
   return (
     <NumericStepper
       value={value}
       thumbAriaLabel={`${value} items`}
       onChange={(value) => {
-        setValue(value);
+        setValue(value)
       }}
     />
-  );
+  )
 }
 ```
 

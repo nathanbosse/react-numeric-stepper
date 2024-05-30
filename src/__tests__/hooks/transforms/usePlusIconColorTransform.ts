@@ -1,7 +1,7 @@
-import { renderHook } from '@testing-library/react-hooks';
-import { MotionValue } from 'framer-motion';
-import type { Size } from '../../../NumericStepper';
-import { usePlusIconColorTransform } from '../../../hooks/transforms/usePlusIconColorTransform';
+import { renderHook } from '@testing-library/react-hooks'
+import { MotionValue } from 'framer-motion'
+import type { Size } from '../../../NumericStepper'
+import { usePlusIconColorTransform } from '../../../hooks/transforms/usePlusIconColorTransform'
 
 type Case = [
   MotionValue<number>,
@@ -10,7 +10,7 @@ type Case = [
   string,
   string,
   MotionValue<string>
-];
+]
 
 const cases: Case[] = [
   [
@@ -133,7 +133,7 @@ const cases: Case[] = [
     '#383838',
     new MotionValue('rgba(255, 255, 255, 1)'),
   ],
-];
+]
 
 describe.each(cases)(
   'usePlusIconColorTransform',
@@ -154,8 +154,8 @@ describe.each(cases)(
           hoverIconColor,
           disabledIconColor
         )
-      );
-      expect(result.current.get()).toBe(expected.get());
-    });
+      )
+      expect(result.current.get()).toBe(expected.get())
+    })
   }
-);
+)

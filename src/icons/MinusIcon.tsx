@@ -1,4 +1,4 @@
-import * as React from 'react';
+import * as React from 'react'
 
 export const MinusIcon = React.forwardRef<
   SVGSVGElement,
@@ -19,6 +19,6 @@ export const MinusIcon = React.forwardRef<
       d="M20 12H4"
     />
   </svg>
-));
+))
 
-MinusIcon.displayName = 'MinusIcon';
+MinusIcon.displayName = 'MinusIcon'

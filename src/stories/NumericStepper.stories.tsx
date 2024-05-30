@@ -1,6 +1,6 @@
-import * as React from 'react';
-import type { ComponentMeta, ComponentStory } from '@storybook/react';
-import { NumericStepper } from '../NumericStepper';
+import * as React from 'react'
+import type { ComponentMeta, ComponentStory } from '@storybook/react'
+import { NumericStepper } from '../NumericStepper'
 
 export default {
   title: 'NumericStepper',
@@ -14,17 +14,17 @@ export default {
     actions: { disabled: true },
     a11y: { disable: true },
   },
-} as ComponentMeta<typeof NumericStepper>;
+} as ComponentMeta<typeof NumericStepper>
 
 const Template: ComponentStory<typeof NumericStepper> = (args) => {
-  const [value, setValue] = React.useState(0);
+  const [value, setValue] = React.useState(0)
   const onChange = (val: number) => {
-    setValue(val);
-  };
-  return <NumericStepper {...args} value={value} onChange={onChange} />;
-};
+    setValue(val)
+  }
+  return <NumericStepper {...args} value={value} onChange={onChange} />
+}
 
-export const Playground = Template.bind({});
+export const Playground = Template.bind({})
 Playground.args = {
   minimumValue: 0,
   maximumValue: Number.MAX_SAFE_INTEGER,
@@ -45,16 +45,16 @@ Playground.args = {
   decrementButtonAriaLabel: 'Decrement',
   thumbAriaLabel: undefined,
   incrementButtonAriaLabel: 'Increment',
-};
+}
 Playground.parameters = {
   controls: { disabled: false },
   actions: { disabled: false },
   a11y: { disable: false },
-};
+}
 
-export const Default = Template.bind({});
+export const Default = Template.bind({})
 
-export const Customized = Template.bind({});
+export const Customized = Template.bind({})
 Customized.args = {
   minimumValue: 10,
   maximumValue: 100,
@@ -70,9 +70,9 @@ Customized.args = {
   thumbColor: '#f97316',
   thumbShadowAnimationOnTrackHoverEnabled: false,
   focusRingColor: '#fff7ed',
-};
+}
 Customized.parameters = {
   backgrounds: {
     default: 'light',
   },
-};
+}

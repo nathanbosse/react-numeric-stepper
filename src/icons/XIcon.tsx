@@ -1,4 +1,4 @@
-import * as React from 'react';
+import * as React from 'react'
 
 export const XIcon = React.forwardRef<
   SVGSVGElement,
@@ -19,6 +19,6 @@ export const XIcon = React.forwardRef<
       d="M6 18L18 6M6 6l12 12"
     />
   </svg>
-));
+))
 
-XIcon.displayName = 'XIcon';
+XIcon.displayName = 'XIcon'

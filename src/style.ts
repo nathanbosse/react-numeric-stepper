@@ -1,25 +1,25 @@
-import styled from '@emotion/styled';
-import isPropValid from '@emotion/is-prop-valid';
-import { css } from '@emotion/react';
-import { m } from 'framer-motion';
-import type { Size, StyledProps } from './NumericStepper';
+import styled from '@emotion/styled'
+import isPropValid from '@emotion/is-prop-valid'
+import { css } from '@emotion/react'
+import { m } from 'framer-motion'
+import type { Size, StyledProps } from './NumericStepper'
 
 export function sizeToScale(size: Size): number {
   switch (size) {
     case 'sm':
-      return 1;
+      return 1
     case 'md':
-      return 1.5;
+      return 1.5
     case 'lg':
-      return 2;
+      return 2
   }
 }
 
-type Props = Required<StyledProps> & { isDragging: boolean };
+type Props = Required<StyledProps> & { isDragging: boolean }
 
 const options = {
   shouldForwardProp: isPropValid,
-};
+}
 
 export const StyledNumericStepper = styled(m.div, options)<Props>`
   align-items: center;
@@ -153,4 +153,4 @@ export const StyledNumericStepper = styled(m.div, options)<Props>`
       }
     }
   }
-`;
+`

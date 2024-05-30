@@ -1,9 +1,9 @@
-import { renderHook } from '@testing-library/react-hooks';
-import { MotionValue } from 'framer-motion';
-import type { Size } from '../../../NumericStepper';
-import { useTrackColorTransform } from '../../../hooks/transforms/useTrackColorTransform';
+import { renderHook } from '@testing-library/react-hooks'
+import { MotionValue } from 'framer-motion'
+import type { Size } from '../../../NumericStepper'
+import { useTrackColorTransform } from '../../../hooks/transforms/useTrackColorTransform'
 
-type Case = [MotionValue<number>, Size, string, string, MotionValue<string>];
+type Case = [MotionValue<number>, Size, string, string, MotionValue<string>]
 
 const cases: Case[] = [
   [
@@ -111,7 +111,7 @@ const cases: Case[] = [
     '#1f1f1f',
     new MotionValue('rgba(31, 31, 31, 1)'),
   ],
-];
+]
 
 describe.each(cases)(
   'useTrackColorTransform',
@@ -124,8 +124,8 @@ describe.each(cases)(
           inactiveTrackColor,
           activeTrackColor
         )
-      );
-      expect(result.current.get()).toBe(expected.get());
-    });
+      )
+      expect(result.current.get()).toBe(expected.get())
+    })
   }
-);
+)

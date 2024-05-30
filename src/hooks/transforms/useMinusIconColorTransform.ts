@@ -1,7 +1,7 @@
-import { useTransform } from 'framer-motion';
-import type { MotionValue } from 'framer-motion';
-import type { Size } from '../../NumericStepper';
-import { sizeToScale } from '../../style';
+import { useTransform } from 'framer-motion'
+import type { MotionValue } from 'framer-motion'
+import type { Size } from '../../NumericStepper'
+import { sizeToScale } from '../../style'
 
 export function useMinusIconColorTransform(
   thumbPositionX: MotionValue<number>,
@@ -14,5 +14,5 @@ export function useMinusIconColorTransform(
     thumbPositionX,
     [16 * sizeToScale(size), 0, -16 * sizeToScale(size)],
     [disabledIconColor, inactiveIconColor, hoverIconColor]
-  );
+  )
 }

@@ -1,4 +1,4 @@
-import type { StorybookConfig } from '@storybook/react/types';
+import type { StorybookConfig } from '@storybook/react/types'
 
 const config: StorybookConfig = {
   stories: ['../src/**/*.stories.mdx', '../src/**/*.stories.@(js|jsx|ts|tsx)'],
@@ -18,6 +18,6 @@ const config: StorybookConfig = {
       },
     },
   },
-};
+}
 
-module.exports = config;
+module.exports = config

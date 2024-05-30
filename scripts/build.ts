@@ -1,6 +1,6 @@
-import { build } from 'esbuild';
-import type { BuildOptions } from 'esbuild';
-import * as pkg from '../package.json';
+import { build } from 'esbuild'
+import type { BuildOptions } from 'esbuild'
+import * as pkg from '../package.json'
 
 const commonBuildOptions: BuildOptions = {
   bundle: true,
@@ -11,7 +11,7 @@ const commonBuildOptions: BuildOptions = {
   ],
   minify: true,
   sourcemap: true,
-};
+}
 
 Promise.all([
   build({
@@ -25,4 +25,4 @@ Promise.all([
     outdir: 'dist/esm',
     splitting: true,
   }),
-]).catch(() => process.exit(1));
+]).catch(() => process.exit(1))

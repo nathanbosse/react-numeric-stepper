@@ -1,9 +1,9 @@
-import { renderHook } from '@testing-library/react-hooks';
-import { MotionValue } from 'framer-motion';
-import type { Size } from '../../../NumericStepper';
-import { useXIconContainerOpacityTransform } from '../../../hooks/transforms/useXIconContainerOpacityTransform';
+import { renderHook } from '@testing-library/react-hooks'
+import { MotionValue } from 'framer-motion'
+import type { Size } from '../../../NumericStepper'
+import { useXIconContainerOpacityTransform } from '../../../hooks/transforms/useXIconContainerOpacityTransform'
 
-type Case = [MotionValue<number>, Size, MotionValue<number>];
+type Case = [MotionValue<number>, Size, MotionValue<number>]
 
 const cases: Case[] = [
   [new MotionValue(0), 'sm', new MotionValue(0)],
@@ -15,7 +15,7 @@ const cases: Case[] = [
   [new MotionValue(0), 'lg', new MotionValue(0)],
   [new MotionValue(62), 'lg', new MotionValue(0.5)],
   [new MotionValue(124), 'lg', new MotionValue(1)],
-];
+]
 
 describe.each(cases)(
   'useXIconContainerOpacityTransform',
@@ -23,8 +23,8 @@ describe.each(cases)(
     test(`returns ${expected.get()} when thumbPositionY=${thumbPositionY.get()} and size="${size}"`, () => {
       const { result } = renderHook(() =>
         useXIconContainerOpacityTransform(thumbPositionY, size)
-      );
-      expect(result.current.get()).toBe(expected.get());
-    });
+      )
+      expect(result.current.get()).toBe(expected.get())
+    })
   }
-);
+)

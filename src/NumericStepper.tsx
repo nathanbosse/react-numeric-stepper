@@ -1,55 +1,55 @@
-import * as React from 'react';
-import { LazyMotion, domMax, useMotionValue, m } from 'framer-motion';
-import type { PanInfo } from 'framer-motion';
-import textFit from 'textfit';
-import { useFirstMountState } from './hooks/useFirstMountState';
-import { useButtonOpacityTransform } from './hooks/transforms/useButtonOpacityTransform';
-import { useMinusIconColorTransform } from './hooks/transforms/useMinusIconColorTransform';
-import { usePlusIconColorTransform } from './hooks/transforms/usePlusIconColorTransform';
-import { useTrackColorTransform } from './hooks/transforms/useTrackColorTransform';
-import { useTrackPositionTransform } from './hooks/transforms/useTrackPositionTransform';
-import { useXIconContainerOpacityTransform } from './hooks/transforms/useXIconContainerOpacityTransform';
-import { MinusIcon } from './icons/MinusIcon';
-import { XIcon } from './icons/XIcon';
-import { PlusIcon } from './icons/PlusIcon';
-import { sizeToScale, StyledNumericStepper } from './style';
+import * as React from 'react'
+import { LazyMotion, domMax, useMotionValue, m } from 'framer-motion'
+import type { PanInfo } from 'framer-motion'
+import textFit from 'textfit'
+import { useFirstMountState } from './hooks/useFirstMountState'
+import { useButtonOpacityTransform } from './hooks/transforms/useButtonOpacityTransform'
+import { useMinusIconColorTransform } from './hooks/transforms/useMinusIconColorTransform'
+import { usePlusIconColorTransform } from './hooks/transforms/usePlusIconColorTransform'
+import { useTrackColorTransform } from './hooks/transforms/useTrackColorTransform'
+import { useTrackPositionTransform } from './hooks/transforms/useTrackPositionTransform'
+import { useXIconContainerOpacityTransform } from './hooks/transforms/useXIconContainerOpacityTransform'
+import { MinusIcon } from './icons/MinusIcon'
+import { XIcon } from './icons/XIcon'
+import { PlusIcon } from './icons/PlusIcon'
+import { sizeToScale, StyledNumericStepper } from './style'
 
-export type Size = 'sm' | 'md' | 'lg';
+export type Size = 'sm' | 'md' | 'lg'
 
-export type DragDirection = 'x' | 'y';
+export type DragDirection = 'x' | 'y'
 
 export interface StyledProps {
-  size?: Size;
-  inactiveTrackColor?: string;
-  activeTrackColor?: string;
-  hoverButtonColor?: string;
-  activeButtonColor?: string;
-  inactiveIconColor?: string;
-  hoverIconColor?: string;
-  activeIconColor?: string;
-  disabledIconColor?: string;
-  thumbColor?: string;
-  thumbLabelColor?: string;
-  thumbShadowAnimationOnTrackHoverEnabled?: boolean;
-  focusRingColor?: string;
+  size?: Size
+  inactiveTrackColor?: string
+  activeTrackColor?: string
+  hoverButtonColor?: string
+  activeButtonColor?: string
+  inactiveIconColor?: string
+  hoverIconColor?: string
+  activeIconColor?: string
+  disabledIconColor?: string
+  thumbColor?: string
+  thumbLabelColor?: string
+  thumbShadowAnimationOnTrackHoverEnabled?: boolean
+  focusRingColor?: string
 }
 
 export interface AccessibilityProps {
-  decrementButtonAriaLabel?: string;
-  thumbAriaLabel?: string;
-  incrementButtonAriaLabel?: string;
+  decrementButtonAriaLabel?: string
+  thumbAriaLabel?: string
+  incrementButtonAriaLabel?: string
 }
 
 export interface Props extends StyledProps, AccessibilityProps {
-  minimumValue?: number;
-  maximumValue?: number;
-  stepValue?: number;
-  value: number;
-  onChange: (value: number) => void;
+  minimumValue?: number
+  maximumValue?: number
+  stepValue?: number
+  value: number
+  onChange: (value: number) => void
 }
 
-const DEBOUNCE_INTERVAL = 500; // milliseconds
-const INITIAL_UPDATE_COUNT = 10;
+const DEBOUNCE_INTERVAL = 500 // milliseconds
+const INITIAL_UPDATE_COUNT = 10
 
 export function NumericStepper({
   minimumValue = 0,
@@ -74,82 +74,82 @@ export function NumericStepper({
   thumbAriaLabel,
   incrementButtonAriaLabel,
 }: Props) {
-  const [dragListener, setDragListener] = React.useState<boolean>(true);
-  const [dragDirection, setDragDirection] = React.useState<DragDirection>();
-  const [isDragging, setIsDragging] = React.useState<boolean>(false);
-  const [updateCount, setUpdateCount] = React.useState<number>(0);
-  const draggableAreaRef = React.useRef<HTMLDivElement>(null);
-  const thumbLabelContainerRef = React.useRef<HTMLDivElement>(null);
-  const isFirstMount = useFirstMountState();
-  const thumbPositionX = useMotionValue<number>(0);
-  const thumbPositionY = useMotionValue<number>(0);
-  const buttonOpacity = useButtonOpacityTransform(thumbPositionY, size);
+  const [dragListener, setDragListener] = React.useState<boolean>(true)
+  const [dragDirection, setDragDirection] = React.useState<DragDirection>()
+  const [isDragging, setIsDragging] = React.useState<boolean>(false)
+  const [updateCount, setUpdateCount] = React.useState<number>(0)
+  const draggableAreaRef = React.useRef<HTMLDivElement>(null)
+  const thumbLabelContainerRef = React.useRef<HTMLDivElement>(null)
+  const isFirstMount = useFirstMountState()
+  const thumbPositionX = useMotionValue<number>(0)
+  const thumbPositionY = useMotionValue<number>(0)
+  const buttonOpacity = useButtonOpacityTransform(thumbPositionY, size)
   const minusIconColor = useMinusIconColorTransform(
     thumbPositionX,
     size,
     inactiveIconColor,
     hoverIconColor,
     disabledIconColor
-  );
+  )
   const plusIconColor = usePlusIconColorTransform(
     thumbPositionX,
     size,
     inactiveIconColor,
     hoverIconColor,
     disabledIconColor
-  );
+  )
   const trackColor = useTrackColorTransform(
     thumbPositionX,
     size,
     inactiveTrackColor,
     activeTrackColor
-  );
+  )
   const trackPosition = useTrackPositionTransform(
     thumbPositionX,
     thumbPositionY
-  );
+  )
   const xIconContainerOpacity = useXIconContainerOpacityTransform(
     thumbPositionY,
     size
-  );
+  )
 
   const increment = (currentValue: number): number => {
-    return currentValue + getChangeAmount(currentValue);
-  };
+    return currentValue + getChangeAmount(currentValue)
+  }
 
   const getChangeAmount = (currentValue: number): number => {
     if (updateCount < INITIAL_UPDATE_COUNT) {
-      return 1;
+      return 1
     }
     if (currentValue <= 9) {
-      return 1;
+      return 1
     }
     if (currentValue <= 60) {
-      return incrementToNextMultipleOfFive(currentValue);
+      return incrementToNextMultipleOfFive(currentValue)
     }
-    return 15;
-  };
+    return 15
+  }
 
   function incrementToNextMultipleOfFive(currentValue: number): number {
-    const remainder = currentValue % 5;
+    const remainder = currentValue % 5
     if (remainder === 0) {
-      return 5;
+      return 5
     } else if (remainder === 4) {
-      return 4;
+      return 4
     } else {
-      return 5 - remainder;
+      return 5 - remainder
     }
   }
 
   const decrement = (currentValue: number): number => {
-    return currentValue - getChangeAmount(currentValue);
-  };
+    return currentValue - getChangeAmount(currentValue)
+  }
 
   React.useEffect(() => {
     if (!isFirstMount) {
-      onChange?.(value);
+      onChange?.(value)
     }
-  }, [isFirstMount, onChange, value]);
+  }, [isFirstMount, onChange, value])
 
   React.useLayoutEffect(() => {
     if (
@@ -161,86 +161,86 @@ export function NumericStepper({
         minFontSize: 4 * sizeToScale(size),
         maxFontSize: 25 * sizeToScale(size),
         widthOnly: true,
-      });
+      })
     }
-  }, [size, value]);
+  }, [size, value])
 
-  const isDecrementable = value - stepValue >= minimumValue;
-  const isIncrementable = value + stepValue <= maximumValue;
+  const isDecrementable = value - stepValue >= minimumValue
+  const isIncrementable = value + stepValue <= maximumValue
 
   function decrementValue(): void {
     if (isDecrementable) {
-      onChange(decrement(value));
+      onChange(decrement(value))
     }
   }
 
   function incrementValue(): void {
     if (isIncrementable) {
-      onChange(increment(value));
+      onChange(increment(value))
     }
   }
 
   function resetValue(): void {
-    onChange(minimumValue);
+    onChange(minimumValue)
   }
 
   function onDirectionLock(axis: DragDirection): void {
-    setDragDirection(axis);
+    setDragDirection(axis)
   }
 
   function onDragStart(): void {
-    setIsDragging(true);
-    setUpdateCount(0);
+    setIsDragging(true)
+    setUpdateCount(0)
   }
 
   function onDragEnd(
     _: MouseEvent | TouchEvent | PointerEvent,
     info: PanInfo
   ): void {
-    setDragListener(false);
+    setDragListener(false)
     setTimeout(() => {
-      setIsDragging(false);
-      setDragListener(true);
-    }, 350);
+      setIsDragging(false)
+      setDragListener(true)
+    }, 350)
 
     if (dragDirection === 'x' && info.offset.x >= 6 * sizeToScale(size)) {
-      incrementValue();
+      incrementValue()
     } else if (
       dragDirection === 'x' &&
       info.offset.x <= -6 * sizeToScale(size)
     ) {
-      decrementValue();
+      decrementValue()
     } else if (
       dragDirection === 'y' &&
       info.offset.y >= 2 * sizeToScale(size)
     ) {
-      resetValue();
+      resetValue()
     }
   }
 
   const debouncedDragHandler = React.useCallback(() => {
-    let lastInvocation = Date.now();
+    let lastInvocation = Date.now()
     return (_: MouseEvent | TouchEvent | PointerEvent, info: PanInfo) => {
-      const now = Date.now();
+      const now = Date.now()
       if (now - lastInvocation > DEBOUNCE_INTERVAL) {
-        lastInvocation = now;
+        lastInvocation = now
         if (dragDirection === 'x' && info.offset.x >= 6 * sizeToScale(size)) {
-          incrementValue();
+          incrementValue()
         } else if (
           dragDirection === 'x' &&
           info.offset.x <= -6 * sizeToScale(size)
         ) {
-          decrementValue();
+          decrementValue()
         } else if (
           dragDirection === 'y' &&
           info.offset.y >= 2 * sizeToScale(size)
         ) {
-          resetValue();
+          resetValue()
         }
-        setUpdateCount((prev) => prev + 1);
+        setUpdateCount((prev) => prev + 1)
       }
-    };
-  }, [dragDirection, incrementValue, decrementValue, resetValue]);
+    }
+  }, [dragDirection, incrementValue, decrementValue, resetValue])
 
   return (
     <LazyMotion features={domMax} strict>
@@ -328,5 +328,5 @@ export function NumericStepper({
         </div>
       </StyledNumericStepper>
     </LazyMotion>
-  );
+  )
 }

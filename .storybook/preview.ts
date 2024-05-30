@@ -1,4 +1,4 @@
-import type { Parameters } from '@storybook/api';
+import type { Parameters } from '@storybook/api'
 
 export const parameters: Parameters = {
   actions: { argTypesRegex: '^on[A-Z].*' },
@@ -8,4 +8,4 @@ export const parameters: Parameters = {
       date: /Date$/,
     },
   },
-};
+}
