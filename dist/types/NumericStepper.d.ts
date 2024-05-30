@@ -26,7 +26,8 @@ export interface Props extends StyledProps, AccessibilityProps {
     maximumValue?: number;
     stepValue?: number;
     value: number;
+    stepIntervalSpeed?: number;
     onChange: (value: number) => void;
 }
-export declare function NumericStepper({ minimumValue, maximumValue, stepValue, value, onChange, size, inactiveTrackColor, activeTrackColor, hoverButtonColor, activeButtonColor, inactiveIconColor, hoverIconColor, activeIconColor, disabledIconColor, thumbColor, thumbLabelColor, thumbShadowAnimationOnTrackHoverEnabled, focusRingColor, decrementButtonAriaLabel, thumbAriaLabel, incrementButtonAriaLabel, }: Props): JSX.Element;
+export declare function NumericStepper({ minimumValue, maximumValue, stepValue, value, onChange, size, inactiveTrackColor, activeTrackColor, hoverButtonColor, activeButtonColor, inactiveIconColor, hoverIconColor, activeIconColor, disabledIconColor, thumbColor, thumbLabelColor, thumbShadowAnimationOnTrackHoverEnabled, focusRingColor, stepIntervalSpeed, decrementButtonAriaLabel, thumbAriaLabel, incrementButtonAriaLabel, }: Props): JSX.Element;
 //# sourceMappingURL=NumericStepper.d.ts.map
