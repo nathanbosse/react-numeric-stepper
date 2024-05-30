@@ -45,11 +45,11 @@ export interface Props extends StyledProps, AccessibilityProps {
   maximumValue?: number
   stepValue?: number
   value: number
+  stepIntervalSpeed?: number
   onChange: (value: number) => void
 }
 
-const DEBOUNCE_INTERVAL = 500 // milliseconds
-const INITIAL_UPDATE_COUNT = 10
+const INITIAL_UPDATE_COUNT = 5
 
 export function NumericStepper({
   minimumValue = 0,
@@ -70,6 +70,7 @@ export function NumericStepper({
   thumbLabelColor = '#ffffff',
   thumbShadowAnimationOnTrackHoverEnabled = true,
   focusRingColor = '#ececec',
+  stepIntervalSpeed = 300,
   decrementButtonAriaLabel,
   thumbAriaLabel,
   incrementButtonAriaLabel,
@@ -222,7 +223,7 @@ export function NumericStepper({
     let lastInvocation = Date.now()
     return (_: MouseEvent | TouchEvent | PointerEvent, info: PanInfo) => {
       const now = Date.now()
-      if (now - lastInvocation > DEBOUNCE_INTERVAL) {
+      if (now - lastInvocation > stepIntervalSpeed) {
         lastInvocation = now
         if (dragDirection === 'x' && info.offset.x >= 6 * sizeToScale(size)) {
           incrementValue()
