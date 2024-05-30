@@ -1,2 +1,2 @@
-export * from './NumericStepper'
+export * from './NumericStepper';
 //# sourceMappingURL=index.d.ts.map
